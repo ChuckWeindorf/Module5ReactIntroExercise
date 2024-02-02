@@ -1,9 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import React, {Component} from "react";
+//import reactLogo from './assets/react.svg'
+//import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
+class App extends React.Component {
+  constructor(props)
+  {
+    super(props);
+    this.state = {
+      list: ["ready","set","go"],
+      text: ""
+    }
+    this.onSubmit2 = this.onSubmit2.bind(this);
+  }
+
+  onSubmit2(event){ 
+    {
+    event.preventDefault();  
+    let list2 = [...this.state.list, this.state.text];
+    this.setState({list: list2, text: ""});
+  }
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Hello World</h1>
+        <form onSubmit={this.onSubmit2}>
+          <input 
+          type="text" 
+          value={this.state.text}
+          onChange={(changeEvent) => {
+            this.setState({text: changeEvent.target.value});
+          }}
+          />
+          <button type="submit">Add</button>
+        </form>  
+        <ul>{this.state.list.map((element,index) => {return <li key={index}>{element}</li>})}</ul>
+      </div>
+    )
+  }
+}
+
+
+
+/*function App() {
   const [count, setCount] = useState(0)
 
   return (
@@ -38,5 +79,6 @@ function App() {
     </>
   )
 }
+*/
 
 export default App
