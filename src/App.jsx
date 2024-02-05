@@ -2,6 +2,7 @@ import React, {Component} from "react";
 //import reactLogo from './assets/react.svg'
 //import viteLogo from '/vite.svg'
 import './App.css'
+import FilmsList from './components/filmslist'
 
 class App extends React.Component {
   constructor(props)
@@ -29,6 +30,8 @@ class App extends React.Component {
         <form onSubmit={this.onSubmit2}>
           <input 
           type="text" 
+          id="todoInput"
+          name="todoInput"
           value={this.state.text}
           onChange={(changeEvent) => {
             this.setState({text: changeEvent.target.value});
@@ -36,14 +39,14 @@ class App extends React.Component {
           />
           <button type="submit">Add</button>
         </form>  
-        <ul>{this.state.list.map((element,index) => {return <li key={index}>{element}</li>})}</ul>
+        <ul>{this.state.list.map((element,index) => {return <li key={element+index}>{element}</li>})}</ul>
+      <FilmsList />
       </div>
     )
   }
 }
 
-
-
+//prior version from lesson intro to react
 /*function App() {
   const [count, setCount] = useState(0)
 
