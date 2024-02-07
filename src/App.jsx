@@ -1,41 +1,24 @@
 import './App.css'
-import FilmsList from './components/filmslist'
-import {useState} from "react";
+import { BrowserRouter, NavLink, Route, Routes } from 'react-router-dom';
+import {HomePage, FilmsPage} from './pages';
 
 function App(props)
  {
-const [list2, setList] = useState(["ready","set","go"]);
-const [text, setText] = useState("");
-
-
-  function onSubmit2(event){ 
-    {
-    event.preventDefault();  
-    let list2 = [...list2, text];
-    setList({list2: list2, text: ""});
-  }
-  }
-    return (
-      <div>
-        <h1>Hello World</h1>
-        <form onSubmit={onSubmit2}>
-          <input 
-          type="text" 
-          id="todoInput"
-          name="todoInput"
-          value={text}
-          onChange={(changeEvent) => {
-            setText({text: changeEvent.target.value});
-          }}
-          />
-          <button type="submit">Add</button>
-        </form>  
-        <ul>{list2.map((element,index) => {return <li key={element+index}>{element}</li>})}</ul>
-      <FilmsList />
-      </div>
-    )
+  return (
+    <BrowserRouter>
+      <ul>
+        <li><NavLink to="/">Home</NavLink></li>
+        <li><NavLink to="/films">Films</NavLink></li>
+      </ul>
+      <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/films" element={<FilmsPage />} />
+      </Routes>
+    </BrowserRouter>
+        )
   }
 
+// for prior versions see branch list inb GIT
 //prior version as class app
 /*
 import React, {Component} from "react";
